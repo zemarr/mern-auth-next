@@ -19,7 +19,7 @@ export const POST = async (request: NextRequest) => {
         if (!existingUser) {
             return NextResponse.json({ error: "User does not exist" }, { status: 400 })
         }
-        // If user already exists
+        // If user password is correct
         const matchedPassword = await bcrypt.compare(password, existingUser.password)
         if (!matchedPassword) {
             return NextResponse.json({ error: "Invalid password" }, { status: 400 })
